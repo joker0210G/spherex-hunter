@@ -630,6 +630,37 @@
         <i id="themeToggleIcon" data-lucide="sun" class="w-3.5 h-3.5"></i>
       </button>
 
+      <!-- Interactive Font Switcher (Times New Roman / Editorial Serif / Modern Sans / Mono) -->
+      <div class="relative inline-block shrink-0" id="fontSelectorContainer">
+        <button id="btnFontToggle" type="button" class="flex items-center gap-1.5 px-2 py-1 rounded blender-btn text-amber-200 hover:text-white border border-space-700 transition shrink-0" title="Switch Observatory Font (Times New Roman, Editorial Serif, Modern Sans, Technical Mono)" aria-label="Toggle Typography Style">
+          <span class="font-bold text-xs font-serif" id="fontActiveIcon">T</span>
+          <span id="fontActiveLabel" class="text-[11px] font-serif hidden md:inline">Times New Roman</span>
+          <i data-lucide="chevron-down" class="w-3 h-3 text-gray-400"></i>
+        </button>
+
+        <div id="fontSelectorDropdown" class="hidden absolute right-0 top-full mt-1.5 w-52 bg-space-900 border border-space-700 rounded-lg p-1.5 shadow-2xl z-50 space-y-1 text-xs select-none">
+          <div class="px-2 py-1 text-[10px] text-gray-400 uppercase tracking-wider font-bold border-b border-space-800">
+            Observatory Typography
+          </div>
+          <button type="button" class="font-option-btn w-full text-left px-2 py-1.5 rounded flex items-center justify-between hover:bg-space-800 transition" data-font="times-new-roman" style="font-family: 'Times New Roman', Times, serif;">
+            <span>Times New Roman</span>
+            <span class="text-[10px] text-amber-400 font-bold check-mark">✓</span>
+          </button>
+          <button type="button" class="font-option-btn w-full text-left px-2 py-1.5 rounded flex items-center justify-between hover:bg-space-800 transition" data-font="editorial-serif" style="font-family: 'Playfair Display', Georgia, serif;">
+            <span>Editorial Serif</span>
+            <span class="text-[10px] text-amber-400 font-bold check-mark hidden">✓</span>
+          </button>
+          <button type="button" class="font-option-btn w-full text-left px-2 py-1.5 rounded flex items-center justify-between hover:bg-space-800 transition" data-font="modern-sans" style="font-family: 'Inter', -apple-system, sans-serif;">
+            <span>Modern Sans</span>
+            <span class="text-[10px] text-amber-400 font-bold check-mark hidden">✓</span>
+          </button>
+          <button type="button" class="font-option-btn w-full text-left px-2 py-1.5 rounded flex items-center justify-between hover:bg-space-800 transition" data-font="technical-mono" style="font-family: 'Space Mono', monospace;">
+            <span>Technical Mono</span>
+            <span class="text-[10px] text-amber-400 font-bold check-mark hidden">✓</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Beginner / Scientist Mode Toggle Pill -->
       <button id="btnToggleUserMode" class="flex items-center gap-1 px-2 py-1 rounded bg-space-850 hover:bg-space-800 border border-space-700 text-[11px] font-medium text-gray-300 hover:text-white transition shrink-0 hidden sm:flex" title="Switch between Beginner (simple plain language) and Scientist (raw telemetry) mode">
         <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -11363,6 +11394,80 @@
           setObservatoryTheme(next);
           if (typeof showToast === 'function') {
             showToast(`Switched to ${next === 'light' ? 'Observatory Light' : 'Deep Space Dark'} Mode (FITS image invariant).`, 'info');
+          }
+        });
+      }
+
+      // -----------------------------------------------------------------------
+      // DYNAMIC OBSERVATORY TYPOGRAPHY ENGINE (TIMES NEW ROMAN / STYLES)
+      // -----------------------------------------------------------------------
+      const btnFontToggle = document.getElementById('btnFontToggle');
+      const fontSelectorDropdown = document.getElementById('fontSelectorDropdown');
+      const fontActiveLabel = document.getElementById('fontActiveLabel');
+
+      const FONT_MAP = {
+        'times-new-roman': 'Times New Roman',
+        'editorial-serif': 'Editorial Serif',
+        'modern-sans': 'Modern Sans',
+        'technical-mono': 'Technical Mono'
+      };
+
+      function setObservatoryFont(fontKey) {
+        const key = FONT_MAP[fontKey] ? fontKey : 'times-new-roman';
+        document.documentElement.setAttribute('data-font', key);
+        document.body.setAttribute('data-font', key);
+        try {
+          localStorage.setItem('spherex_font', key);
+        } catch (_) {}
+
+        if (fontActiveLabel) {
+          fontActiveLabel.textContent = FONT_MAP[key] || 'Times New Roman';
+        }
+
+        document.querySelectorAll('.font-option-btn').forEach(btn => {
+          const check = btn.querySelector('.check-mark');
+          const isMatch = btn.getAttribute('data-font') === key;
+          if (check) check.classList.toggle('hidden', !isMatch);
+          btn.classList.toggle('bg-space-800', isMatch);
+        });
+
+        window.dispatchEvent(new CustomEvent('spherex:fontchange', { detail: { font: key } }));
+      }
+      window.setObservatoryFont = setObservatoryFont;
+
+      const storedFont = localStorage.getItem('spherex_font') || 'times-new-roman';
+      setObservatoryFont(storedFont);
+
+      if (btnFontToggle && fontSelectorDropdown) {
+        btnFontToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isHidden = fontSelectorDropdown.classList.contains('hidden');
+          document.getElementById('coordsPopover')?.classList.add('hidden');
+          document.getElementById('headerMoreActionsDropdown')?.classList.add('hidden');
+          fontSelectorDropdown.classList.toggle('hidden', !isHidden);
+        });
+
+        document.querySelectorAll('.font-option-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const fontChoice = btn.getAttribute('data-font');
+            setObservatoryFont(fontChoice);
+            fontSelectorDropdown.classList.add('hidden');
+            if (typeof showToast === 'function') {
+              showToast(`Typography set to ${FONT_MAP[fontChoice]} across observatory.`, 'info');
+            }
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!fontSelectorDropdown.contains(e.target) && !btnFontToggle.contains(e.target)) {
+            fontSelectorDropdown.classList.add('hidden');
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !fontSelectorDropdown.classList.contains('hidden')) {
+            fontSelectorDropdown.classList.add('hidden');
           }
         });
       }

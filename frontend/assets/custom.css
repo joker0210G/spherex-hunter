@@ -52,16 +52,77 @@
 html, body {
   background-color: var(--paper-base) !important;
   color: var(--ink-primary) !important;
-  font-family: var(--font-body) !important;
+  font-family: 'Times New Roman', Times, 'Nimbus Roman No9 L', Georgia, serif !important;
   font-size: 13.5px;
   line-height: 1.55;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ensure .font-sans and prose also strictly resolve to Times New Roman */
-.font-sans, p, label, li, a {
-  font-family: var(--font-body) !important;
+/*==============================================================================
+  DYNAMIC TYPOGRAPHY ENGINE & FONT FAMILIES
+  Default: Times New Roman enforced functionally across all elements
+  ==============================================================================*/
+
+/* Times New Roman (Active by default or when data-font="times-new-roman") */
+html[data-font="times-new-roman"],
+body[data-font="times-new-roman"],
+html:not([data-font]),
+body:not([data-font]) {
+  font-family: 'Times New Roman', Times, 'Nimbus Roman No9 L', Georgia, serif !important;
+}
+
+html[data-font="times-new-roman"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+body[data-font="times-new-roman"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+html:not([data-font]) :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+body:not([data-font]) :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas) {
+  font-family: 'Times New Roman', Times, 'Nimbus Roman No9 L', Georgia, serif !important;
+}
+
+/* Editorial Serif Mode */
+html[data-font="editorial-serif"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+body[data-font="editorial-serif"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas) {
+  font-family: 'Playfair Display', 'Newsreader', Georgia, serif !important;
+}
+
+/* Modern Sans Mode */
+html[data-font="modern-sans"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+body[data-font="modern-sans"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas) {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Technical Mono Mode */
+html[data-font="technical-mono"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas),
+body[data-font="technical-mono"] :not(svg):not(path):not(circle):not(line):not(polygon):not(polyline):not(rect):not(canvas) {
+  font-family: 'Space Mono', 'JetBrains Mono', monospace !important;
+}
+
+/* Interactive Font Selector Dropdown */
+#fontSelectorDropdown {
+  background: var(--paper-surface, #f4eee3) !important;
+  border: 1.5px solid var(--paper-border-strong, #9e8e75) !important;
+  box-shadow: 4px 8px 24px rgba(36, 30, 25, 0.18) !important;
+  color: var(--ink-primary, #241e19) !important;
+  border-radius: 2px !important;
+}
+
+#fontSelectorDropdown * {
+  border-color: var(--paper-border, #cfc3af) !important;
+}
+
+.font-option-btn {
+  color: var(--ink-primary, #241e19) !important;
+  border-radius: 2px !important;
+  padding: 0.35rem 0.6rem !important;
+}
+
+.font-option-btn:hover {
+  background: var(--paper-panel, #ede6d8) !important;
+  color: var(--accent-clay, #c45836) !important;
+}
+
+.font-option-btn .check-mark {
+  color: var(--accent-clay, #c45836) !important;
 }
 
 /* Typography Hierarchy */

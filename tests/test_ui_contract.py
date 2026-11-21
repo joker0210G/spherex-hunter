@@ -1144,6 +1144,31 @@ def test_viewport_draw_frame_canvas_transform_hygiene_and_cosdec_contract():
     assert "const safeCosDec = (typeof cosDec === 'number' && Number.isFinite(cosDec))" in html, "drawAutoIdentificationOverlay must defensively guard cosDec"
 
 
+def test_interactive_times_new_roman_typography_engine_contract():
+    """Validates the functional Times New Roman font switcher and typography engine."""
+    html, soup = _get_html_and_soup()
+
+    # 1. Font toggle button and dropdown exist in header
+    btn_font = soup.find(id="btnFontToggle")
+    assert btn_font is not None, "Missing #btnFontToggle button in header"
+    dropdown = soup.find(id="fontSelectorDropdown")
+    assert dropdown is not None, "Missing #fontSelectorDropdown menu"
+
+    # 2. Options for Times New Roman and styles exist
+    options = soup.find_all(class_="font-option-btn")
+    assert len(options) >= 4, "Must have at least 4 font options"
+    font_keys = [btn.get("data-font") for btn in options]
+    assert "times-new-roman" in font_keys, "Missing times-new-roman option"
+    assert "editorial-serif" in font_keys, "Missing editorial-serif option"
+    assert "modern-sans" in font_keys, "Missing modern-sans option"
+    assert "technical-mono" in font_keys, "Missing technical-mono option"
+
+    # 3. JavaScript engine function exposed
+    assert "setObservatoryFont" in html, "Missing setObservatoryFont engine function"
+    assert "spherex_font" in html, "Missing spherex_font localStorage persistence key"
+
+
+
 
 
 
