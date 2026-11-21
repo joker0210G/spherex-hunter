@@ -8,9 +8,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  /* Editorial Typography */
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Editorial Typography: Times New Roman */
+  --font-serif: 'Times New Roman', Times, Georgia, serif;
+  --font-body: 'Times New Roman', Times, Georgia, serif;
   --font-mono: 'Space Mono', 'Courier Prime', monospace;
 
   /* Tinted Paper & Warm Neutral Palette */
@@ -57,6 +57,11 @@ html, body {
   line-height: 1.55;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure .font-sans and prose also strictly resolve to Times New Roman */
+.font-sans, p, label, li, a {
+  font-family: var(--font-body) !important;
 }
 
 /* Typography Hierarchy */
