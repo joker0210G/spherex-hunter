@@ -1,197 +1,570 @@
-/*--------------------------------------------------------------
-  Hand‑crafted UI – editorial theme
-  --------------------------------------------------------------*/
+/*==============================================================================
+  SPHEREx HUNTER — HANDCRAFTED EDITORIAL OBSERVATORY FOLIO
+  An artisanal, human-crafted design system inspired by vintage astronomical
+  atlas plates, independent literary journals, and letterpress science folios.
+  NASA Space Apps Challenge 2026 • Team RIP
+  ==============================================================================*/
 
-/* ==== Font families & base typography ==== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
-  /* Font families */
-  --ff-heading: 'Playfair Display', serif;
-  --ff-body:    'Merriweather', serif;
+  /* Editorial Typography */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Space Mono', 'Courier Prime', monospace;
 
-  /* Base colors */
-  --c-bg:       #faf7f2;   /* warm paper */
-  --c-text:     #332e2c;   /* deep warm gray */
-  --c-accent-1: #d9643b;   /* burnt orange */
-  --c-accent-2: #c57c8d;   /* dusty rose */
-  --c-neutral:  #e2d9d1;   /* warm neutral */
+  /* Tinted Paper & Warm Neutral Palette */
+  --paper-base: #faf7f2;          /* Warm textured rag paper */
+  --paper-surface: #f4eee3;       /* Linen bookcloth surface */
+  --paper-panel: #ede6d8;         /* Toned cream vellum */
+  --paper-card: #e5dcce;          /* Warm parchment card */
+  --paper-card-alt: #ded4c3;      /* Darker parchment contrast */
+  --paper-border: #cfc3af;        /* Hand-ruled stone border */
+  --paper-border-strong: #9e8e75; /* Bold lithographic line */
 
-  /* Spacing & rhythm */
-  --space-y:    2.4rem;
+  /* Inks */
+  --ink-primary: #241e19;         /* Dark walnut/carbon ink */
+  --ink-secondary: #54493e;       /* Warm sepia ink */
+  --ink-muted: #877868;           /* Faded pencil note */
+
+  /* Characterful Accents */
+  --accent-clay: #c45836;         /* Burnt terracotta clay */
+  --accent-clay-hover: #ad4b2c;
+  --accent-clay-tint: #f5e4dc;
+
+  --accent-olive: #3f6348;        /* Botanical sage/olive */
+  --accent-olive-hover: #2e4a35;
+  --accent-olive-tint: #e2ece3;
+
+  --accent-rose: #b56073;         /* Vintage botanical dusty rose */
+  --accent-rose-hover: #9c4c5e;
+  --accent-rose-tint: #fae8ec;
+
+  --accent-ochre: #c9882c;        /* Antique brass/gold leaf */
+  --accent-ochre-tint: #faefdb;
+
+  /* Celestial Glass Plate (For FITS Astronomical Viewport Invariance) */
+  --plate-deep: #0a0806;
+  --plate-frame: #1b1612;
 }
 
-/* ---- Global reset ---- */
+/* Base Body & Layout */
 html, body {
-  background: var(--c-bg);
-  color: var(--c-text);
-  font-family: var(--ff-body);
-  line-height: 1.6;
-  margin: 0;
+  background-color: var(--paper-base) !important;
+  color: var(--ink-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 13.5px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ==== Headings ==== */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--ff-heading);
-  margin-top: calc(var(--space-y) * 1.5);
-  margin-bottom: calc(var(--space-y) / 2);
-  color: var(--c-text);
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: var(--font-serif) !important;
+  color: var(--ink-primary) !important;
+  letter-spacing: -0.015em;
 }
 
-/* Varied heading weights & sizes */
-h1 { font-size: 2.4rem; font-weight: 600; }
-h2 { font-size: 2rem;   font-weight: 400; letter-spacing: -0.02em; }
-h3 { font-size: 1.8rem; font-weight: 600; }
-h4 { font-size: 1.6rem; font-weight: 400; }
-h5 { font-size: 1.4rem; font-weight: 600; }
-h6 { font-size: 1.2rem; font-weight: 400; }
-
-/* ==== Paragraphs ==== */
-p {
-  margin-bottom: var(--space-y);
+h1 {
+  font-size: 1.85rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
 }
 
-/* ==== Links ==== */
-a {
-  color: var(--c-accent-1);
-  text-decoration: none;
-  position: relative;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-/* ==== Buttons – handcrafted ==== */
-.btn {
-  display: inline-block;
-  cursor: pointer;
-  font-family: var(--ff-body);
-  font-weight: 500;
-  padding: 0.45rem 0.9rem;
-  margin: 0.2rem;
-  border: 2px solid var(--c-accent-1);
-  background: transparent;
-  color: var(--c-accent-1);
-  transition: all 0.2s ease;
-}
-
-/* Outline style (default) */
-.btn-outline {
-  border-radius: 0;               /* no rounded corners */
-}
-
-/* Underline CTA style */
-.btn-underline {
-  border: none;
-  background: none;
-  color: var(--c-accent-2);
-  position: relative;
-}
-.btn-underline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background: var(--c-accent-2);
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-.btn-underline:hover::after {
-  transform: scaleX(1);
-}
-
-/* Hover “hand‑drawn” effect */
-.btn:hover {
-  transform: rotate(-2deg) scale(1.02);
-  border-color: var(--c-accent-2);
-  color: var(--c-accent-2);
-}
-
-/* ==== Cards & containers ==== */
-
-/* Variant 1 – thick left border */
-.card-left-border {
-  border-left: 6px solid var(--c-accent-1);
-  padding: 1rem 1.2rem;
-  margin-bottom: var(--space-y);
-  background: var(--c-neutral);
-}
-
-/* Variant 2 – background block */
-.card-bg-block {
-  background: var(--c-neutral);
-  padding: 1.5rem;
-  margin-bottom: var(--space-y);
-}
-
-/* Variant 3 – whitespace grouping only */
-.card-spaced {
-  margin-bottom: var(--space-y);
-}
-
-/* ==== Layout & asymmetry ==== */
-.container {
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-/* Asymmetric offsets */
-.asym-left  { margin-left: -2rem; }
-.asym-right { margin-right: -2rem; }
-
-/* Grid‑free sections – use flex for occasional side‑by‑side */
-.flex-section {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-/* ==== Icon handling ==== */
-.icon {
-  display: none; /* hide default svg icon sets */
-}
-
-/* For cases where we still want a visual cue, replace with textual label */
-.icon-label {
-  font-family: var(--ff-body);
+h2 {
+  font-size: 1.45rem !important;
+  font-weight: 500 !important;
   font-style: italic;
-  color: var(--c-accent-2);
+  letter-spacing: -0.01em !important;
 }
 
-/* ==== Motion – minimal ==== */
-
-/* Header fade‑in on page load */
-@keyframes fadeInHeader {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
+h3 {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
 }
-header { animation: fadeInHeader 0.6s ease-out; }
 
-/* Remove any generic scroll‑reveal CSS that might exist */
-[data-scroll-reveal] { opacity: 1 !important; transform: none !important; }
+/* Tabular data & telemetry */
+.font-mono, #quickCoordsLabel, #dockStatusCoords, .telemetry-val {
+  font-family: var(--font-mono) !important;
+  letter-spacing: -0.02em !important;
+}
 
-/* ==== Form elements ==== */
+/* Editorial Masthead Header */
+header {
+  background: var(--paper-surface) !important;
+  border-bottom: 2px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  box-shadow: 0 4px 16px -4px rgba(36, 30, 25, 0.08) !important;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  overflow: visible !important;
+}
+
+header * {
+  border-color: var(--paper-border) !important;
+}
+
+/* Brand Title */
+#brandTitle, #btnHeaderBrand span {
+  font-family: var(--font-serif) !important;
+}
+
+/* Asymmetric Coordinate Badge */
+#btnToggleCoordsPopover {
+  background: var(--paper-panel) !important;
+  border: 1.5px solid var(--paper-border-strong) !important;
+  border-radius: 2px !important;
+  color: var(--ink-primary) !important;
+  padding: 0.25rem 0.65rem !important;
+  transform: rotate(-0.35deg);
+  box-shadow: 1px 1px 0 rgba(36, 30, 25, 0.1) !important;
+}
+
+#btnToggleCoordsPopover:hover {
+  background: var(--paper-card) !important;
+  border-color: var(--accent-clay) !important;
+  color: var(--accent-clay) !important;
+  transform: rotate(0deg) translateY(-1px);
+}
+
+/* Editorial Buttons: No generic rounded rectangles with drop shadows */
+button, .blender-btn, .btn, .target-btn, .dock-tab-btn {
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  transition: all 0.16s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+  font-family: var(--font-body) !important;
+}
+
+.blender-btn {
+  background: var(--paper-panel) !important;
+  border: 1.5px solid var(--paper-border) !important;
+  color: var(--ink-primary) !important;
+}
+
+.blender-btn:hover {
+  background: var(--paper-card-alt) !important;
+  border-color: var(--accent-clay) !important;
+  color: var(--accent-clay) !important;
+  transform: translateY(-1px) rotate(-0.5deg);
+}
+
+.blender-btn-active, .blender-btn-orange-active {
+  background: var(--accent-clay) !important;
+  border-color: var(--accent-clay) !important;
+  color: #faf7f2 !important;
+}
+
+/* Outlined CTA Buttons */
+#btnTopFetch, #btnGoCoords {
+  background: var(--accent-clay) !important;
+  border: 1.5px solid var(--accent-clay-hover) !important;
+  color: #faf7f2 !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  border-radius: 2px !important;
+}
+
+#btnTopFetch:hover, #btnGoCoords:hover {
+  background: var(--accent-clay-hover) !important;
+  transform: translateY(-1px) rotate(-0.5deg);
+  box-shadow: 2px 2px 0 rgba(36, 30, 25, 0.15) !important;
+}
+
+/* AI Co-Pilot Button */
+#btnAiCopilot {
+  background: var(--paper-surface) !important;
+  border: 1.5px solid var(--accent-olive) !important;
+  color: var(--accent-olive) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+  border-radius: 2px !important;
+}
+
+#btnAiCopilot:hover {
+  background: var(--accent-olive) !important;
+  color: #faf7f2 !important;
+  transform: translateY(-1px) rotate(0.5deg);
+}
+
+/* Mission Guide Button */
+#btnOpenOnboarding {
+  background: var(--accent-ochre-tint) !important;
+  border: 1.5px solid var(--accent-ochre) !important;
+  color: var(--accent-ochre) !important;
+  font-family: var(--font-serif) !important;
+  border-radius: 2px !important;
+}
+
+#btnOpenOnboarding:hover {
+  background: var(--accent-ochre) !important;
+  color: #faf7f2 !important;
+}
+
+/* Left Tool Rail: Field Notebook Spine */
+#leftToolRail {
+  background: var(--paper-surface) !important;
+  border-right: 2px solid var(--paper-border-strong) !important;
+  box-shadow: 2px 0 10px rgba(36, 30, 25, 0.04) !important;
+}
+
+.rail-tool-btn {
+  background: var(--paper-panel) !important;
+  border: 1px solid var(--paper-border-strong) !important;
+  border-radius: 2px !important;
+  color: var(--ink-primary) !important;
+}
+
+.rail-tool-btn * {
+  color: var(--ink-primary) !important;
+}
+
+.rail-tool-btn:hover {
+  background: var(--paper-card-alt) !important;
+  border-color: var(--accent-clay) !important;
+  color: var(--accent-clay) !important;
+  transform: translateY(-1px) rotate(-0.5deg);
+}
+
+.rail-tool-btn:hover * {
+  color: var(--accent-clay) !important;
+}
+
+.rail-tool-btn.blender-btn-active,
+.rail-tool-btn.blender-btn-orange-active {
+  background: var(--accent-clay) !important;
+  border-color: var(--accent-clay) !important;
+  color: #faf7f2 !important;
+}
+
+.rail-tool-btn.blender-btn-active *,
+.rail-tool-btn.blender-btn-orange-active *,
+.rail-tool-btn.blender-btn-active i,
+.rail-tool-btn.blender-btn-orange-active i {
+  color: #faf7f2 !important;
+}
+
+/* Center Astronomical Canvas: Deep Sky Glass Plate */
+#viewportContainer {
+  background-color: var(--plate-deep) !important;
+  border: 2px solid var(--paper-border-strong) !important;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Floating HUDs inside the Viewport: Deep Sky Glass Cards with Gold/Cyan telemetry */
+#viewportContainer .absolute.bottom-2\.5 > div,
+#celestialCompassRose,
+#vpTopTargetCard,
+#guidedTourBanner,
+#candidateAlertStrip {
+  background: rgba(22, 17, 13, 0.92) !important;
+  border: 1.5px solid rgba(207, 195, 175, 0.45) !important;
+  border-radius: 2px !important;
+  color: #e8ded2 !important;
+  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.5) !important;
+}
+
+#viewportContainer .absolute.bottom-2\.5 > div *,
+#vpTopTargetCard *,
+#celestialCompassRose * {
+  color: #e8ded2 !important;
+}
+
+#viewportContainer .text-blender-orange,
+#vpBottomEpochTag,
+#vpTopTargetCard #vpFrameLabel {
+  color: #fb923c !important;
+}
+
+#viewportContainer .text-cyan-300,
+#viewportContainer .text-cyan-400 {
+  color: #38bdf8 !important;
+}
+
+#viewportContainer .text-amber-300 {
+  color: #fcd34d !important;
+}
+
+/* Floating Controllers (Time Step & Blink popups) */
+#viewportTimeStepHUD, #viewportBlinkHUD, #viewModesPopup, #targetPresetsPopup, #coordsPopover, #headerMoreActionsDropdown {
+  background: var(--paper-surface) !important;
+  border: 2px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  border-radius: 2px !important;
+  box-shadow: 4px 6px 20px rgba(36, 30, 25, 0.15) !important;
+}
+
+#hudTimeStepHeader, #hudBlinkHeader {
+  background: var(--paper-panel) !important;
+  border-bottom: 1.5px solid var(--paper-border) !important;
+  color: var(--ink-primary) !important;
+  font-family: var(--font-serif) !important;
+}
+
+#viewportTimeStepHUD *, #viewportBlinkHUD *, #viewModesPopup * {
+  border-color: var(--paper-border) !important;
+}
+
+/* Right Sidebar: Observer's Field Ledger */
+#sceneInspectorSidebar, #propertiesSidebar {
+  background: var(--paper-surface) !important;
+  border-left: 2px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  box-shadow: -2px 0 10px rgba(36, 30, 25, 0.04) !important;
+}
+
+#sceneInspectorSidebarHeader, #propertiesSidebarHeader {
+  background: var(--paper-panel) !important;
+  border-bottom: 1.5px solid var(--paper-border) !important;
+  color: var(--ink-primary) !important;
+}
+
+#sceneInspectorSidebarHeader *, #propertiesSidebarHeader * {
+  color: var(--ink-primary) !important;
+}
+
+/* Live State Badge in Sidebar Header: High-Contrast Olive Pill */
+#sceneStatusBadge {
+  background: var(--accent-olive-tint, #e2ece3) !important;
+  color: var(--accent-olive, #2d4c35) !important;
+  border: 1px solid var(--accent-olive) !important;
+  font-weight: 700 !important;
+  border-radius: 2px !important;
+  padding: 0.15rem 0.5rem !important;
+}
+
+/* Search input with proper icon padding */
+#layerSearchInput {
+  background: #ffffff !important;
+  border: 1.5px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  padding-left: 2rem !important;
+  padding-right: 0.6rem !important;
+  border-radius: 2px !important;
+}
+
+#layerSearchInput:focus {
+  border-color: var(--accent-clay) !important;
+  box-shadow: 0 0 0 1px var(--accent-clay) !important;
+}
+
+/* Layer Cards, Epoch Cards, and Item Blocks */
+.layer-item, .epoch-card, .cand-card, .inspector-card, #evidenceTierBox, #diffBaselineCard {
+  border: none !important;
+  border-left: 4px solid var(--accent-clay) !important;
+  border-top: 1px solid var(--paper-border) !important;
+  border-right: 1px solid var(--paper-border) !important;
+  border-bottom: 1px solid var(--paper-border) !important;
+  border-radius: 2px !important;
+  background: var(--paper-panel) !important;
+  color: var(--ink-primary) !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0.5rem 0.65rem !important;
+  transition: all 0.15s ease !important;
+}
+
+.layer-item:hover, .epoch-card:hover, .cand-card:hover {
+  background: var(--paper-card) !important;
+  border-left-color: var(--accent-clay-hover) !important;
+  transform: translateX(2px);
+}
+
+.layer-item *, .epoch-card *, .cand-card * {
+  color: var(--ink-primary) !important;
+}
+
+.layer-item .text-gray-400, .layer-item .text-gray-500,
+.epoch-card .text-gray-400, .epoch-card .text-gray-500 {
+  color: var(--ink-secondary) !important;
+}
+
+/* High Proper Motion Warning inside Epochs */
+.epoch-card div[class*="bg-cyan-950"] {
+  background: var(--accent-clay-tint, #fbf0ea) !important;
+  border-color: var(--accent-clay) !important;
+  color: var(--accent-clay) !important;
+  border-radius: 2px !important;
+}
+
+.epoch-card div[class*="bg-cyan-950"] span,
+.epoch-card div[class*="bg-cyan-950"] i {
+  color: var(--accent-clay) !important;
+  font-weight: 600 !important;
+}
+
+.epoch-card span[class*="text-blender-orange"],
+.epoch-card .text-blender-orange {
+  color: var(--accent-clay) !important;
+  font-weight: 700 !important;
+}
+
+/* Target Card Metadata Chips */
+[role="treeitem"] .bg-blender-850,
+[role="treeitem"] div[class*="bg-blender-"] {
+  background: var(--paper-panel) !important;
+  border: 1px solid var(--paper-border) !important;
+  border-radius: 2px !important;
+  color: var(--ink-primary) !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+[role="treeitem"] .bg-blender-850 span.text-gray-400 {
+  color: var(--ink-secondary) !important;
+  font-weight: 500 !important;
+}
+
+[role="treeitem"] .bg-blender-850 span.text-white,
+[role="treeitem"] .bg-blender-850 span.text-cyan-300 {
+  color: var(--ink-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Target Evidence Tier Badge: Elegant small-caps pill */
+[role="treeitem"] span[class*="border-emerald-"],
+[role="treeitem"] span[class*="border-amber-"],
+[role="treeitem"] span[class*="border-blue-"],
+[role="treeitem"] span[class*="border-purple-"],
+[role="treeitem"] span[class*="border-rose-"] {
+  background: var(--accent-clay-tint, #f5e4dc) !important;
+  border: 1px solid var(--accent-clay) !important;
+  color: var(--accent-clay) !important;
+  font-weight: 700 !important;
+  font-size: 8px !important;
+  letter-spacing: 0.04em !important;
+  border-radius: 2px !important;
+}
+
+/* Tab Headers: Handcrafted Book Tabs */
+.sidebar-tab, .dock-tab-btn {
+  font-family: var(--font-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--ink-muted) !important;
+  border-bottom: 2px solid transparent !important;
+  padding: 0.4rem 0.8rem !important;
+}
+
+.sidebar-tab:hover, .dock-tab-btn:hover {
+  color: var(--ink-primary) !important;
+}
+
+.sidebar-tab.active, .dock-tab-btn.active {
+  color: var(--accent-clay) !important;
+  border-bottom: 2.5px solid var(--accent-clay) !important;
+  font-weight: 600 !important;
+}
+
+/* Bottom Observatory Dock: Folding Drawer */
+#bottomDock {
+  background: var(--paper-surface) !important;
+  border-top: 2px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  box-shadow: 0 -4px 16px rgba(36, 30, 25, 0.06) !important;
+}
+
+#bottomDock * {
+  border-color: var(--paper-border) !important;
+}
+
+#bottomDock .text-gray-300, #bottomDock .text-gray-400 {
+  color: var(--ink-secondary) !important;
+}
+
+/* Global Container Background Overrides Outside Viewport */
+body > header [class*="bg-space-"], body > header [class*="bg-blender-"],
+#sceneInspectorSidebar [class*="bg-space-"], #sceneInspectorSidebar [class*="bg-blender-"],
+#bottomDock [class*="bg-space-"], #bottomDock [class*="bg-blender-"] {
+  background-color: var(--paper-panel) !important;
+}
+
+/* Global Text Colors */
+.text-white, .text-gray-100, .text-gray-200 {
+  color: var(--ink-primary) !important;
+}
+
+.text-gray-300, .text-gray-400 {
+  color: var(--ink-secondary) !important;
+}
+
+.text-gray-500 {
+  color: var(--ink-muted) !important;
+}
+
+/* Inputs, Selects, and Textareas */
 input, select, textarea {
-  font-family: var(--ff-body);
-  border: 1px solid var(--c-neutral);
-  padding: 0.4rem;
-  background: #fff;
-  color: var(--c-text);
+  background: #ffffff !important;
+  border: 1.5px solid var(--paper-border-strong) !important;
+  color: var(--ink-primary) !important;
+  border-radius: 2px !important;
+  font-family: var(--font-body) !important;
+  padding: 0.3rem 0.5rem;
 }
 
-/* ==== Misc ==== */
-hr {
-  border: 0;
-  border-top: 1px solid var(--c-neutral);
-  margin: var(--space-y) 0;
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-clay) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--accent-clay) !important;
 }
 
-/* ==== Utility classes ==== */
-.text-accent-1 { color: var(--c-accent-1); }
-.text-accent-2 { color: var(--c-accent-2); }
-.bg-accent-1 { background: var(--c-accent-1); }
-.bg-accent-2 { background: var(--c-accent-2); }
+/* Minimal purposeful animations: Masthead load only */
+@keyframes editorialFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-/* ==== End of custom stylesheet ==== */
+header {
+  animation: editorialFadeIn 0.35s ease-out;
+}
+
+/* Kill all generic scroll-fade animations across the UI */
+[data-scroll-reveal], .animate-fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Observation Epochs & Difference Baseline Section */
+[role="group"][aria-label="Observation Epochs Tree"],
+[role="group"][aria-label="Observation Epochs Tree"] > div,
+#accordionObservationEpochs,
+#accordionObservationEpochs summary {
+  background-color: var(--paper-panel) !important;
+  border-color: var(--paper-border) !important;
+  color: var(--ink-primary) !important;
+}
+
+[role="group"][aria-label="Observation Epochs Tree"] *,
+#accordionObservationEpochs * {
+  color: var(--ink-primary) !important;
+}
+
+[role="group"][aria-label="Observation Epochs Tree"] .text-gray-400,
+#accordionObservationEpochs .text-gray-400 {
+  color: var(--ink-secondary) !important;
+}
+
+[role="group"][aria-label="Observation Epochs Tree"] .text-amber-400,
+[role="group"][aria-label="Observation Epochs Tree"] span[class*="text-amber-"] {
+  color: var(--accent-clay) !important;
+  font-weight: 700 !important;
+}
+
+/* Custom Scrollbars in Warm Bone & Slate */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--paper-border-strong);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-clay);
+}

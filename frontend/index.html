@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,60 +89,59 @@
       cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='5' fill='none' stroke='%2300ffff' stroke-width='1.5'/><line x1='12' y1='1' x2='12' y2='7' stroke='%23ffffff' stroke-width='1.5'/><line x1='12' y1='17' x2='12' y2='23' stroke='%23ffffff' stroke-width='1.5'/><line x1='1' y1='12' x2='7' y2='12' stroke='%23ffffff' stroke-width='1.5'/><line x1='17' y1='12' x2='23' y2='12' stroke='%23ffffff' stroke-width='1.5'/><circle cx='12' cy='12' r='1' fill='%23ffffff'/></svg>") 12 12, crosshair !important;
     }
 
-    /* Cosmic Nebula Vertical Tool Rail Styling (Left-most Toolbar) */
+    /* Handcrafted Editorial Tool Rail (Left-most) */
     #leftToolRail {
-      background: linear-gradient(180deg, #090d16 0%, #0d121f 35%, #0f172a 70%, #131424 100%) !important;
-      border-right: 1px solid rgba(56, 189, 248, 0.22) !important;
-      box-shadow: 4px 0 24px -2px rgba(2, 6, 23, 0.75), inset -1px 0 0 0 rgba(255, 255, 255, 0.05);
+      background: var(--paper-surface, #f4eee3) !important;
+      border-right: 2px solid var(--paper-border-strong, #9e8e75) !important;
+      box-shadow: 2px 0 10px rgba(36, 30, 25, 0.04) !important;
     }
-    /* Scene Collection Vertical Toolbar Styling (Right-most Toolbar) */
+    /* Scene Collection Vertical Toolbar (Right-most) */
     #propertiesSidebar {
-      background: linear-gradient(180deg, #130a24 0%, #170d2d 25%, #1c1036 55%, #160c2b 85%, #0f071e 100%) !important;
-      border-left: 1px solid rgba(192, 132, 252, 0.28) !important;
-      box-shadow: -4px 0 28px -2px rgba(8, 3, 18, 0.85), inset 1px 0 0 0 rgba(255, 255, 255, 0.04) !important;
+      background: linear-gradient(180deg, #130a24 0%, #170d2d 25%, #1c1036 55%, #160c2b 85%, #0f071e 100%);
+      border-left: 2px solid var(--paper-border-strong, #9e8e75);
     }
     #propertiesSidebarHeader {
-      background: linear-gradient(180deg, rgba(38, 17, 66, 0.95) 0%, rgba(26, 11, 46, 0.98) 100%) !important;
-      border-bottom: 1px solid rgba(192, 132, 252, 0.25) !important;
-      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(38, 17, 66, 0.95) 0%, rgba(26, 11, 46, 0.98) 100%);
+      border-bottom: 1.5px solid var(--paper-border, #cfc3af);
     }
     #propertiesSidebar #layerSearchInput {
-      background: rgba(15, 7, 30, 0.85) !important;
-      border-color: rgba(192, 132, 252, 0.3) !important;
+      background: #ffffff !important;
+      border: 1.5px solid var(--paper-border-strong, #9e8e75) !important;
+      color: var(--ink-primary, #241e19) !important;
     }
     #propertiesSidebar #layerSearchInput:focus {
-      border-color: #c084fc !important;
-      box-shadow: 0 0 8px rgba(192, 132, 252, 0.4) !important;
+      border-color: var(--accent-clay, #c45836) !important;
+      box-shadow: 0 0 0 1px var(--accent-clay, #c45836) !important;
     }
     .rail-tool-btn {
       position: relative;
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.75) 100%);
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      border-radius: 8px;
-      color: #94a3b8;
-      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--paper-panel, #ede6d8) !important;
+      border: 1px solid var(--paper-border, #cfc3af) !important;
+      border-radius: 2px !important;
+      color: var(--ink-primary, #241e19) !important;
+      transition: all 0.16s cubic-bezier(0.2, 0.8, 0.4, 1);
     }
     .rail-tool-btn:hover {
-      background: linear-gradient(180deg, rgba(56, 189, 248, 0.16) 0%, rgba(30, 58, 138, 0.3) 100%);
-      border-color: rgba(56, 189, 248, 0.45);
-      color: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.18);
+      background: var(--paper-card, #e5dcce) !important;
+      border-color: var(--accent-clay, #c45836) !important;
+      color: var(--accent-clay, #c45836) !important;
+      transform: translateY(-1px) rotate(-0.5deg);
+      box-shadow: 1px 2px 4px rgba(36, 30, 25, 0.1);
     }
     .rail-tool-btn:active {
       transform: translateY(1px);
     }
     .rail-tool-btn.blender-btn-active {
-      background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
-      border-color: #38bdf8 !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 14px rgba(56, 189, 248, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+      background: var(--paper-card-alt, #ded4c3) !important;
+      border-color: var(--accent-clay, #c45836) !important;
+      color: var(--accent-clay, #c45836) !important;
+      box-shadow: inset 0 0 0 1px var(--accent-clay, #c45836) !important;
     }
     .rail-tool-btn.blender-btn-orange-active {
-      background: linear-gradient(180deg, #ea580c 0%, #c2410c 100%) !important;
-      border-color: #fb923c !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 14px rgba(251, 146, 60, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+      background: var(--accent-clay, #c45836) !important;
+      border-color: var(--accent-clay-hover, #ad4b2c) !important;
+      color: #faf7f2 !important;
+      box-shadow: 1px 1px 4px rgba(36, 30, 25, 0.15) !important;
     }
 
     /* Button primitives */
@@ -291,6 +291,7 @@
       box-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
     }
   </style>
+  <link rel="stylesheet" href="./assets/custom.css">
 </head>
 <body class="h-screen flex flex-col bg-space-950 text-xs w-full max-w-full overflow-x-hidden">
 
@@ -642,7 +643,6 @@
           <span class="font-medium text-xs">More</span>
           <span id="moreCountBadge" class="hidden px-1 min-w-[14px] h-[14px] rounded-full bg-purple-600 text-white text-[8px] font-bold items-center justify-center leading-none">0</span>
           <i data-lucide="chevron-down" id="moreChevron" class="w-3 h-3 text-gray-400 transition-transform"></i>
-        </button>
         </button>
 
         <!-- Dropdown Menu -->
@@ -1207,9 +1207,9 @@
       </div>
 
       <!-- TOP-LEFT VIEWPORT TARGET TELEMETRY CHIP (Issue #40 Deconflicted & Non-Overlapping) -->
-      <div id="vpTopTargetCard" class="absolute top-3 left-3 pointer-events-none text-xs font-mono space-y-0.5 bg-space-900/85 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-space-700 text-gray-300 shadow-lg max-w-[calc(100vw-380px)] sm:max-w-md z-10 transition-all">
-        <div class="flex items-center gap-1.5 truncate">
-          <span id="vpTargetName" class="text-white font-bold text-xs tracking-wide truncate">WISE 0855-0714</span>
+      <div id="vpTopTargetCard" class="absolute top-3 left-3 pointer-events-none text-xs font-mono space-y-0.5 bg-space-900/85 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-space-700 text-gray-300 shadow-lg max-w-[calc(100vw-340px)] sm:max-w-md z-10 transition-all">
+        <div class="flex items-center gap-1.5">
+          <span id="vpTargetName" class="text-white font-bold text-xs tracking-wide shrink-0">WISE 0855-0714</span>
           <span id="vpTargetDivider" class="text-space-500">|</span>
           <span id="vpFrameLabel" class="text-blender-orange font-semibold text-[11px] truncate">(Frame 1) 2MASS Baseline 1999</span>
         </div>
@@ -3718,7 +3718,7 @@
           <div class="space-y-1 font-mono text-[10px]">
             <div class="flex items-center justify-between bg-blender-850 px-2 py-0.5 rounded border border-blender-700">
               <span class="text-gray-400">Object Type:</span>
-              <span class="text-white font-medium truncate max-w-[170px]" title="${escapeHtml(t.object_type)}">${escapeHtml(t.object_type)}</span>
+              <span class="text-white font-medium truncate max-w-[260px] text-right" title="${escapeHtml(t.object_type)}">${escapeHtml(t.object_type)}</span>
             </div>
             ${t.spectral_type ? `
             <div class="flex items-center justify-between bg-blender-850 px-2 py-0.5 rounded border border-blender-700">
