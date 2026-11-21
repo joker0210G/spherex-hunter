@@ -1,0 +1,197 @@
+/*--------------------------------------------------------------
+  Hand‑crafted UI – editorial theme
+  --------------------------------------------------------------*/
+
+/* ==== Font families & base typography ==== */
+:root {
+  /* Font families */
+  --ff-heading: 'Playfair Display', serif;
+  --ff-body:    'Merriweather', serif;
+
+  /* Base colors */
+  --c-bg:       #faf7f2;   /* warm paper */
+  --c-text:     #332e2c;   /* deep warm gray */
+  --c-accent-1: #d9643b;   /* burnt orange */
+  --c-accent-2: #c57c8d;   /* dusty rose */
+  --c-neutral:  #e2d9d1;   /* warm neutral */
+
+  /* Spacing & rhythm */
+  --space-y:    2.4rem;
+}
+
+/* ---- Global reset ---- */
+html, body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--ff-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==== Headings ==== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading);
+  margin-top: calc(var(--space-y) * 1.5);
+  margin-bottom: calc(var(--space-y) / 2);
+  color: var(--c-text);
+}
+
+/* Varied heading weights & sizes */
+h1 { font-size: 2.4rem; font-weight: 600; }
+h2 { font-size: 2rem;   font-weight: 400; letter-spacing: -0.02em; }
+h3 { font-size: 1.8rem; font-weight: 600; }
+h4 { font-size: 1.6rem; font-weight: 400; }
+h5 { font-size: 1.4rem; font-weight: 600; }
+h6 { font-size: 1.2rem; font-weight: 400; }
+
+/* ==== Paragraphs ==== */
+p {
+  margin-bottom: var(--space-y);
+}
+
+/* ==== Links ==== */
+a {
+  color: var(--c-accent-1);
+  text-decoration: none;
+  position: relative;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Buttons – handcrafted ==== */
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  margin: 0.2rem;
+  border: 2px solid var(--c-accent-1);
+  background: transparent;
+  color: var(--c-accent-1);
+  transition: all 0.2s ease;
+}
+
+/* Outline style (default) */
+.btn-outline {
+  border-radius: 0;               /* no rounded corners */
+}
+
+/* Underline CTA style */
+.btn-underline {
+  border: none;
+  background: none;
+  color: var(--c-accent-2);
+  position: relative;
+}
+.btn-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--c-accent-2);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.btn-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hover “hand‑drawn” effect */
+.btn:hover {
+  transform: rotate(-2deg) scale(1.02);
+  border-color: var(--c-accent-2);
+  color: var(--c-accent-2);
+}
+
+/* ==== Cards & containers ==== */
+
+/* Variant 1 – thick left border */
+.card-left-border {
+  border-left: 6px solid var(--c-accent-1);
+  padding: 1rem 1.2rem;
+  margin-bottom: var(--space-y);
+  background: var(--c-neutral);
+}
+
+/* Variant 2 – background block */
+.card-bg-block {
+  background: var(--c-neutral);
+  padding: 1.5rem;
+  margin-bottom: var(--space-y);
+}
+
+/* Variant 3 – whitespace grouping only */
+.card-spaced {
+  margin-bottom: var(--space-y);
+}
+
+/* ==== Layout & asymmetry ==== */
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Asymmetric offsets */
+.asym-left  { margin-left: -2rem; }
+.asym-right { margin-right: -2rem; }
+
+/* Grid‑free sections – use flex for occasional side‑by‑side */
+.flex-section {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* ==== Icon handling ==== */
+.icon {
+  display: none; /* hide default svg icon sets */
+}
+
+/* For cases where we still want a visual cue, replace with textual label */
+.icon-label {
+  font-family: var(--ff-body);
+  font-style: italic;
+  color: var(--c-accent-2);
+}
+
+/* ==== Motion – minimal ==== */
+
+/* Header fade‑in on page load */
+@keyframes fadeInHeader {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+header { animation: fadeInHeader 0.6s ease-out; }
+
+/* Remove any generic scroll‑reveal CSS that might exist */
+[data-scroll-reveal] { opacity: 1 !important; transform: none !important; }
+
+/* ==== Form elements ==== */
+input, select, textarea {
+  font-family: var(--ff-body);
+  border: 1px solid var(--c-neutral);
+  padding: 0.4rem;
+  background: #fff;
+  color: var(--c-text);
+}
+
+/* ==== Misc ==== */
+hr {
+  border: 0;
+  border-top: 1px solid var(--c-neutral);
+  margin: var(--space-y) 0;
+}
+
+/* ==== Utility classes ==== */
+.text-accent-1 { color: var(--c-accent-1); }
+.text-accent-2 { color: var(--c-accent-2); }
+.bg-accent-1 { background: var(--c-accent-1); }
+.bg-accent-2 { background: var(--c-accent-2); }
+
+/* ==== End of custom stylesheet ==== */
